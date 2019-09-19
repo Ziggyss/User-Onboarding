@@ -1,12 +1,14 @@
 import React from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
+import * as yup from 'yup';
 
 const validationSchema = yup.object().shape({
   name: yup.string().required("Please add your name"),
-  terms: yup.bool().checked("Please agree to the terms")
+  terms: yup.bool()
+  .required("Please agree to the terms and conditions")
 });
 
-function userForm() {
+function UserForm(validationSchema, initialUserForm, onSubmit) {
   return (
     <Formik
       validationSchema={validationSchema}
@@ -14,17 +16,22 @@ function userForm() {
       onSubmit={onSubmit}
       render={props => {
         return (
+            
           <Form>
             <div>
+            <h1>Add User Below:</h1>
               <label>
                 Name
                 <Field name="name" type="text" placeholder="Name" />
+                <ErrorMessage name='name' component='div' />
               </label>
               <label>
                 <Field name="email" type="text" placeholder="Email" />
+                <ErrorMessage name='name' component='div' />
               </label>
               <label>
                 <Field name="password" type="text" placeholder="Password" />
+                <ErrorMessage name='name' component='div' />
               </label>
               <input
                 name="terms"
@@ -43,4 +50,4 @@ function userForm() {
   );
 }
 
-export default Form;
+export default UserForm;
