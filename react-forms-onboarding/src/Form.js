@@ -1,12 +1,10 @@
 import React from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import * as yup from 'yup';
 
-const validationSchema = yup.object().shape({
+/* const validationSchema = yup.object().shape({
   name: yup.string().required("Please add your name"),
-  terms: yup.bool()
-  .required("Please agree to the terms and conditions")
-});
+/*   terms: yup.bool()
+  .required("Please agree to the terms and conditions"), */
 
 function UserForm(validationSchema, initialUserForm, onSubmit) {
   return (
