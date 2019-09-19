@@ -1,9 +1,15 @@
 import React from "react";
 import { Form, Formik, Field, ErrorMessage } from "formik";
 
+const validationSchema = yup.object().shape({
+  name: yup.string().required("Please add your name"),
+  terms: yup.bool().checked("Please agree to the terms")
+});
+
 function userForm() {
   return (
     <Formik
+      validationSchema={validationSchema}
       initialValues={initialUserForm}
       onSubmit={onSubmit}
       render={props => {
@@ -20,9 +26,16 @@ function userForm() {
               <label>
                 <Field name="password" type="text" placeholder="Password" />
               </label>
-              <input type="checkbox" /> Terms of Service
+              <input
+                name="terms"
+                type="checkbox"
+                checked={props.values.terms}
+              />{" "}
+              Terms of Service
             </div>
-            <button type="submit">Submit</button>
+            <button name="submitButton" type="submit">
+              Submit
+            </button>
           </Form>
         );
       }}
